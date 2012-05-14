@@ -1,0 +1,44 @@
+
+/**
+ * Full adder. Computes sum, the least significnat bit of a + b + c,
+ * and carry, the most significant bit of a + b + c.
+ */
+
+CHIP FullAdder {
+
+    IN  a, b, c;
+    OUT sum,   // LSB of a + b + c
+        carry; // MSB of a + b + c
+
+    PARTS:
+
+    Not(in=a,out=Nota);
+    Not(in=b,out=Notb);
+    Not(in=c,out=Notc);
+
+    And(a=Nota,b=Notb,out=AndNotaNotb);
+    And(a=AndNotaNotb,b=c,out=AndNotaNotbc);
+
+    And(a=Nota,b=b,out=AndNotab);
+    And(a=AndNotab,b=Notc,out=AndNotabNotc);
+
+    And(a=a,b=Notb,out=AndaNotb);
+    And(a=AndaNotb,b=Notc,out=AndaNotbNotc);
+
+    And(a=a,b=b,out=Andab);
+    And(a=Andab,b=c,out=Andabc);
+
+    Or(a=AndNotaNotbc,b=AndNotabNotc,out=OrAndNotaNotbcAndNotabNotc);
+    Or(a=OrAndNotaNotbcAndNotabNotc,b=AndaNotbNotc,out=OrAndNotaNotbcAndNotabNotcAndaNotbNotc);
+    Or(a=OrAndNotaNotbcAndNotabNotcAndaNotbNotc,b=Andabc,out=sum);
+
+    And(a=AndaNotb,b=c,out=AndaNotbc);
+
+    And(a=AndNotab,b=c,out=AndNotabc);
+
+    And(a=a,b=b,out=ab);
+
+    Or(a=AndaNotbc,b=AndNotabc,out=OrAndaNotbcAndNotabc);
+    Or(a=OrAndaNotbcAndNotabc,b=ab,out=carry);
+
+}

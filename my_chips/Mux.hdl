@@ -1,0 +1,19 @@
+
+/**
+ * Mux gate: Multiplexer
+ */
+
+CHIP Mux {
+
+    IN  a, b, s;
+    OUT out;
+
+    PARTS:
+
+    Not(in=s,out=Nots);
+
+    And(a=a,b=Nots,out=aNots);
+    And(a=b,b=s,out=bs);
+
+    Or(a=aNots,b=bs,out=out);
+}

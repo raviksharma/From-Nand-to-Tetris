@@ -1,0 +1,30 @@
+
+/*
+Chip name: Add16
+Inputs: a[16], b[16]
+Outputs: out[16]
+Function: out = a + b
+Comment: Integer 2's complement addition.
+Overflow is neither detected nor handled.
+*/
+
+/**
+ * 4-bit integer adder.  out = a + b where a,b are 16-bit 
+ * 2's complement representations of integers.  Overflow is 
+ * neither detected nor handled.
+ */
+
+/*
+ * Adds two 16-bit values.
+ * The most-significant carry bit is ignored.
+ */
+
+CHIP Add16 {
+
+    IN  a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+
+
+}

@@ -1,0 +1,15 @@
+
+/**
+ * Nand gate: out = a nand b.
+ */
+
+CHIP Nand {
+
+    IN  a, b;
+    OUT out;
+
+    PARTS:
+
+    And(a=a,b=b,out=ab);
+    Not(in=ab,out=out);
+}

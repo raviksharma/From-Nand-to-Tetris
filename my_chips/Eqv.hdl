@@ -1,0 +1,20 @@
+
+/**
+ * Eqv gate: out = a Equivalence b.
+ */
+
+CHIP Eqv {
+
+    IN  a, b;
+    OUT out;
+
+    PARTS:
+
+    Not(in=a,out=Nota);
+    Not(in=b,out=Notb);
+
+    And(a=a,b=b,out=aAndb);
+    And(a=Nota,b=Notb,out=NotaAndNotb);
+
+    Or(a=aAndb,b=NotaAndNotb,out=out);
+}

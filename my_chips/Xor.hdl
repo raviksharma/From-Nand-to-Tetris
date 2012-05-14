@@ -1,0 +1,20 @@
+
+/**
+ * Xor gate: out = a xor b.
+ */
+
+CHIP Xor {
+
+    IN  a, b;
+    OUT out;
+
+    PARTS:
+
+    Not(in=a,out=Nota);
+    Not(in=b,out=Notb);
+
+    And(a=a,b=Notb,out=aNotb);
+    And(a=Nota,b=b,out=bNota);
+
+    Or(a=aNotb,b=bNota,out=out);
+}
